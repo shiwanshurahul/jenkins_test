@@ -1,0 +1,53 @@
+pipeline {
+    agent any  // Use any available agent/node
+    stages {
+
+        stage('SCM Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/shiwanshurahul/jenkins_test.git'
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                echo "Creating virtual environment..."
+                sh """
+                    python -m venv venv
+                    . venv/bin/activate
+                    print('Virtual environment created and activated.')
+
+                """
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo "Installing required packages..."
+                sh """
+                    . venv/bin/activate
+                    print('Installing packages from requirements.txt:')
+                    pip install -r requirements.txt
+                    pip install NumPy 
+                """
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                echo "Running pytest..."
+                sh """
+                    . venv/bin/activate
+                    pytest --junitxml=report.xml
+                """
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Archiving test results..."
+            junit 'report.xml'
+        }
+    }
+}
