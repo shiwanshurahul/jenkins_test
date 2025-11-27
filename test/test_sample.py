@@ -26,4 +26,7 @@ def test_mult():
     assert multiply(2, 3) == 6 
 
 def test_multiply():
-    assert multiply(4, 6) == 12 
+    assert multiply(4, 6) == 24  #shoudn't pass
+
+#By default, any non-zero exit code from a command fails the Jenkins stage, 
+#which is why your build shows ERROR when a test fails.
