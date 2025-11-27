@@ -1,4 +1,6 @@
-from app.app_core import *
+from jenkins_test.app.app_core import *
+
+
 
 #Because Python resolves imports based on the project root, 
 #NOT the folder of the test file.
