@@ -38,6 +38,7 @@ pipeline {
                 echo "Running pytest..."
                 bat """
                     call venv\\Scripts\\activate
+                    set PYTHONPATH=%CD%\\jenkins_test
                     pytest --junitxml=report.xml
                 """
             }
