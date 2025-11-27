@@ -14,7 +14,7 @@ pipeline {
                 echo "Creating virtual environment..."
                 bat """
                     python -m venv venv
-                    call venv\Scripts\activate
+                    call venv\\Scripts\\activate
                     python -c "print('Virtual environment created and activated')"
 
                 """
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo "Installing required packages..."
                 bat """
-                    call venv\Scripts\activate
+                    call venv\\Scripts\\activate
                     python -c "print('Installing packages from requirements.txt:')"
                     pip install -r requirements.txt
                     pip install NumPy 
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo "Running pytest..."
                 bat """
-                    call venv\Scripts\activate
+                    call venv\\Scripts\\activate
                     pytest --junitxml=report.xml
                 """
             }
