@@ -1,5 +1,5 @@
 pipeline {
-    agent any  // Use any available agent/node
+    agent any  // Use any available agent/nde
     stages {
 
         stage('SCM Checkout') {
@@ -12,7 +12,7 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 echo "Creating virtual environment..."
-                sh """
+                bat """
                     python -m venv venv
                     . venv/bin/activate
                     print('Virtual environment created and activated.')
@@ -24,7 +24,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Installing required packages..."
-                sh """
+                bat """
                     . venv/bin/activate
                     print('Installing packages from requirements.txt:')
                     pip install -r requirements.txt
@@ -36,7 +36,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Running pytest..."
-                sh """
+                bat """
                     . venv/bin/activate
                     pytest --junitxml=report.xml
                 """
