@@ -1,4 +1,4 @@
-from jenkins_test.app.app_core import *
+from app.app_core import *
 
 
 
