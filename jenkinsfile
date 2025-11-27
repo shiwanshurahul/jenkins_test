@@ -36,9 +36,12 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Running pytest..."
+                echo "Checking workspace structure..."
+                bat "dir"
+
                 bat """
                     call venv\\Scripts\\activate
-                    set PYTHONPATH=%CD%\\jenkins_test
+                    set PYTHONPATH=%WORKSPACE%
                     pytest --junitxml=report.xml
                 """
             }
