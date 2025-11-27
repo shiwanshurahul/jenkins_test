@@ -2,7 +2,7 @@ pipeline {
     agent any  // Use any available agent/nde
     stages {
 
-        stage('SCM Checkout') {
+        stage('SCM Checkout') {  //reomve this stage as u are already using Pipeline script from SCM
             steps {
                 git branch: 'main',
                     url: 'https://github.com/shiwanshurahul/jenkins_test.git'
